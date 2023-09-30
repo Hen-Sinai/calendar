@@ -7,14 +7,14 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 
-from entities import User_creds, User_config_data
+from entities import Employee_config_data
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
-def get_credentials() -> List[User_creds]:
-    user_credentials = [
-        User_config_data('Hen', 'credentials/hen_credentials.json', 'tokens/hen_token.json'),
-        User_config_data('Limor', 'credentials/limor_credentials.json', 'tokens/limor_token.json')
+def get_credentials() -> List[Employee_config_data]:
+    user_credentials: List[Employee_config_data] = [
+        Employee_config_data('Hen', 'credentials/hen_credentials.json', 'tokens/hen_token.json'),
+        Employee_config_data('Limor', 'credentials/limor_credentials.json', 'tokens/limor_token.json')
     ]
 
     creds_list = []
@@ -36,7 +36,9 @@ def get_credentials() -> List[User_creds]:
 
             with open(token_file, 'w') as token:
                 token.write(creds.to_json())
-                
-        creds_list.append(User_creds(user_info.name, creds))
         
-    return creds_list
+        user_info.creds = creds
+        print(user_info.creds)
+        # creds_list.append(User_creds(user_info.name, creds))
+        
+    return user_credentials

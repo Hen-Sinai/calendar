@@ -7,7 +7,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 from config.config import get_credentials
-from entities import Appointment, Employee, Employee_creds
+from entities import Appointment, Employee, Employee_config_data
 
 # def init_employees(employees_data) -> List[Employee]:
 #     employees = []
@@ -16,7 +16,7 @@ from entities import Appointment, Employee, Employee_creds
 #         employees.append(Employee(name, ))
     
 
-def get_calendar_events(employees_credentials: List[Employee_creds]):
+def get_calendar_events(employees_credentials: List[Employee_config_data]):
     appointments = []
     try:
         for employee_cred in employees_credentials:
@@ -44,7 +44,7 @@ def get_calendar_events(employees_credentials: List[Employee_creds]):
 
 def main():
     creds = get_credentials()
-    get_calendar_events(creds)
+    # get_calendar_events(creds)
     
     # employee = Employee(
     #     _name='John Doe',

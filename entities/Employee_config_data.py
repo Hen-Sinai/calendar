@@ -1,11 +1,13 @@
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta
+
+from google.oauth2.credentials import Credentials
 
 @dataclass
-class User_config_data:
+class Employee_config_data:
     _name: str
     _credentials_file: str
     _token_file: str
+    _creds: Credentials = None
     
     @property
     def name(self) -> str:
@@ -18,3 +20,11 @@ class User_config_data:
     @property
     def token_file(self) -> str:
         return self._token_file
+    
+    @property
+    def creds(self) -> Credentials:
+        return self._creds
+    
+    @creds.setter
+    def creds(self, new_creds: Credentials):
+        self._creds = new_creds
